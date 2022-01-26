@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.android.dailywritingprompt.databinding.FragmentEntryItemBinding
 import com.example.android.dailywritingprompt.databinding.FragmentEntryListBinding
+import com.example.android.dailywritingprompt.models.Entry
 import com.example.android.dailywritingprompt.models.EntryItem
 
 /**
@@ -31,7 +32,7 @@ class EntryRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        //TODO: delete this test later
+        //TODO: delete this test after you've set up the view model and more
         val item = EntryItem(
             "time stamp as title goes here",
             "preview text...",

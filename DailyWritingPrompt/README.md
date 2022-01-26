@@ -2,6 +2,8 @@
 
 Daily Writing Prompt is an app to help writers build the daily habit of writing something creative.
 
+Perfect for when you just wake up and are lazing in bed with phone in hand!
+
 ## More Info
 
 This is my final app for Udacity's Android Kotlin Developer course. I will develop it in accordance

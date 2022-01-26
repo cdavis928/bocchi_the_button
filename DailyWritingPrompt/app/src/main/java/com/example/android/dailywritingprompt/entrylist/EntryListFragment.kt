@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.dailywritingprompt.R
+import com.example.android.dailywritingprompt.databinding.FragmentEntryListBinding
 import com.example.android.dailywritingprompt.models.Entry
+import com.example.android.dailywritingprompt.models.EntryItem
 
 /**
  * A fragment representing a list of Items.
@@ -32,24 +34,15 @@ class EntryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val binding = FragmentEntryListBinding.inflate(inflater)
 
-        //TODO: How do we inflate recyclerview when the parent is constraint layout?
+        binding.fragmentEntryRv.adapter = EntryRecyclerViewAdapter(Entry.ITEMS)
 
-
-        val view = inflater.inflate(R.layout.fragment_entry_list, container, false)
-
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = EntryRecyclerViewAdapter(Entry.ITEMS)
-            }
-        }
-        return view
+        return binding.root
 
     }
+
+
 
 
     companion object {

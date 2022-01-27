@@ -11,6 +11,9 @@ import androidx.navigation.findNavController
 import com.example.android.dailywritingprompt.R
 import com.example.android.dailywritingprompt.databinding.EntryFragmentBinding
 
+//TODO: Display some kind of warning message if the user clicks back, and if possible, the menu/home buttons
+// Maybe there's a way to hide it like when a game is being played
+
 class EntryFragment : Fragment() {
 
     private lateinit var binding: EntryFragmentBinding

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".createentry.PromptFragment">
+
+        <TextView
+            android:id="@+id/prompt_headline_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/shake_phone_directions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <!-- TODO: create binding adapter for this    -->
+        <ImageView
+            android:id="@+id/prompt_image_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <!-- TODO: create binding adapter for this    -->
+        <TextView
+            android:id="@+id/prompt_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/prompt_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

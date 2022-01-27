@@ -6,9 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import com.example.android.dailywritingprompt.R
+import com.example.android.dailywritingprompt.databinding.EntryFragmentBinding
 
 class EntryFragment : Fragment() {
+
+    private lateinit var binding: EntryFragmentBinding
 
     companion object {
         fun newInstance() = EntryFragment()
@@ -28,5 +33,7 @@ class EntryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(EntryViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
+
 
 }

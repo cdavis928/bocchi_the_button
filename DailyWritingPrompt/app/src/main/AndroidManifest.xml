@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyWritingPrompt">
         <activity
+            android:name=".createentry.PromptActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

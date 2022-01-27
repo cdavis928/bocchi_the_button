@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.dailywritingprompt.R
@@ -19,6 +21,8 @@ import com.example.android.dailywritingprompt.models.EntryItem
 class EntryListFragment : Fragment() {
 
     private var columnCount = 1
+
+    private lateinit var binding: FragmentEntryListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +38,26 @@ class EntryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentEntryListBinding.inflate(inflater)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_entry_list,
+            container,
+            false
+        )
 
         binding.fragmentEntryRv.adapter = EntryRecyclerViewAdapter(Entry.ITEMS)
 
         return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.addEntryButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(EntryListFragmentDirections.actionEntryListFragmentToPromptFragment())
+        }
     }
 
 

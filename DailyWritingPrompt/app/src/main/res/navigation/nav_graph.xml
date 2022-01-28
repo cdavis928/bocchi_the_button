@@ -9,10 +9,13 @@
         android:id="@+id/entryListFragment"
         android:name="com.example.android.dailywritingprompt.entrylist.EntryListFragment"
         android:label="fragment_entry_list"
-        tools:layout="@layout/fragment_entry_list" >
+        tools:layout="@layout/fragment_entry_list">
         <action
             android:id="@+id/action_entryListFragment_to_promptFragment"
             app:destination="@id/promptFragment" />
+        <action
+            android:id="@+id/action_entryListFragment_to_entryDetailFragment"
+            app:destination="@id/entryDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/entryFragment"
@@ -23,15 +26,21 @@
             android:id="@+id/action_entryFragment_to_entryDetailFragment"
             app:destination="@id/entryDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/entryDetailFragment"
         android:name="com.example.android.dailywritingprompt.entrydetail.EntryDetailFragment"
-        android:label="EntryDetailFragment" />
+        android:label="EntryDetailFragment"
+        android:layout="@layout/entry_detail_fragment">
+        <argument
+            android:name="selectedEntry"
+            app:argType="com.example.android.dailywritingprompt.models.Entry" />
+    </fragment>
     <fragment
         android:id="@+id/promptFragment"
         android:name="com.example.android.dailywritingprompt.createentry.PromptFragment"
         android:label="prompt_fragment"
-        tools:layout="@layout/prompt_fragment" >
+        tools:layout="@layout/prompt_fragment">
         <action
             android:id="@+id/action_promptFragment_to_entryFragment"
             app:destination="@id/entryFragment" />

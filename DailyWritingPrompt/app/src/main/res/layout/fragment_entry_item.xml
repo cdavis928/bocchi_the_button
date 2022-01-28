@@ -7,7 +7,7 @@
 
         <variable
             name="entryObject"
-            type="com.example.android.dailywritingprompt.models.EntryItem" />
+            type="com.example.android.dailywritingprompt.models.Entry" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,61 +4,52 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.example.android.dailywritingprompt.databinding.FragmentEntryItemBinding
 import com.example.android.dailywritingprompt.databinding.FragmentEntryListBinding
 import com.example.android.dailywritingprompt.models.Entry
-import com.example.android.dailywritingprompt.models.EntryItem
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
  */
-class EntryRecyclerViewAdapter(
-    private val entries: MutableList<EntryItem>
-) : RecyclerView.Adapter<EntryRecyclerViewAdapter.ViewHolder>() {
+class EntryRecyclerViewAdapter(private val clickListener: EntryListener) :
+    ListAdapter<Entry, EntryRecyclerViewAdapter.EntryViewHolder>(DiffCallback){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        //TODO: according to the android docs, this is where we can modify behavior for each list item
-        return ViewHolder(
-            FragmentEntryItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-
+    companion object DiffCallback : DiffUtil.ItemCallback<Entry>() {
+        override fun areItemsTheSame(oldItem: Entry, newItem: Entry): Boolean {
+            return oldItem === newItem
+        }
+        override fun areContentsTheSame(oldItem: Entry, newItem: Entry): Boolean {
+            return oldItem.entryId == newItem.entryId
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        //TODO: delete this test after you've set up the view model and more
-        val item = EntryItem(
-            "time stamp as title goes here",
-            "preview text...",
-            "100 words",
-            "5 minutes",
-            1
-        )
-
-
-//        val item = entries[position]
-        holder.idView.text = item.entryTitle
-        holder.contentView.text = item.entryPreview
-        holder.wordCountView.text = item.wordCount
-        holder.writeTimeView.text = item.writeTime
+    class EntryViewHolder(var binding: FragmentEntryItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(entry: Entry) {
+            binding.entryObject = entry
+            binding.executePendingBindings()
+        }
     }
 
-    override fun getItemCount(): Int = entries.size
+    class EntryListener(val clickListener: (entry: Entry) -> Unit) {
+        fun onClick(entry: Entry) = clickListener(entry)
+    }
 
-    inner class ViewHolder(binding: FragmentEntryItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.entryTitle
-        val contentView: TextView = binding.entryPreview
-        val wordCountView: TextView = binding.wordCount
-        val writeTimeView: TextView = binding.writeTime
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder {
+        val withDataBinding: FragmentEntryItemBinding = FragmentEntryItemBinding
+            .inflate(LayoutInflater.from(parent.context))
+        return EntryViewHolder(withDataBinding)
+    }
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+    override fun onBindViewHolder(holder: EntryViewHolder, position: Int) {
+        val entry = getItem(position)
+
+        holder.also {
+            it.itemView.setOnClickListener {
+                clickListener.onClick(entry)
+            }
+            it.bind(entry)
         }
     }
 

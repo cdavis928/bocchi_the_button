@@ -6,27 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.android.dailywritingprompt.EntryViewModel
 import com.example.android.dailywritingprompt.R
+import com.example.android.dailywritingprompt.databinding.EntryDetailFragmentBinding
 
 class EntryDetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = EntryDetailFragment()
-    }
-
-    private lateinit var viewModel: EntryDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.entry_detail_fragment, container, false)
+
+        val binding = EntryDetailFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EntryDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

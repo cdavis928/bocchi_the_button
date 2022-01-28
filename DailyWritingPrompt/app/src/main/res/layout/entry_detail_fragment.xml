@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO: need to add wordcount and timestamp-->
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.appcompat.widget.LinearLayoutCompat
     android:id="@+id/entry_screen_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,3 +28,4 @@
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.android.dailywritingprompt.EntryViewModel
 import com.example.android.dailywritingprompt.R
 import com.example.android.dailywritingprompt.databinding.PromptFragmentBinding
 

@@ -69,6 +69,8 @@ class EntryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Make the entries appear in the list
+
         binding.addEntryButton.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(EntryListFragmentDirections.actionEntryListFragmentToPromptFragment())

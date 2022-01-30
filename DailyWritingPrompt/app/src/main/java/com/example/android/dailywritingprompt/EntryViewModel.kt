@@ -2,9 +2,17 @@ package com.example.android.dailywritingprompt
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.android.dailywritingprompt.database.DatabaseEntry
+import com.example.android.dailywritingprompt.database.EntryDatabaseDao
 import com.example.android.dailywritingprompt.models.Entry
+import kotlinx.coroutines.launch
 
-class EntryViewModel(application: Application) : AndroidViewModel(application) {
+class EntryViewModel(val database: EntryDatabaseDao,
+                     application: Application) : AndroidViewModel(application) {
+
+    private var entry = MutableLiveData<DatabaseEntry?>()
+
+    val entries = database.getAllEntries()
 
     private val _navigateToEntryDetail = MutableLiveData<Entry?>()
     val navigateToEntryDetail: MutableLiveData<Entry?>
@@ -16,6 +24,12 @@ class EntryViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onEntryNavigated() {
         _navigateToEntryDetail.value = null
+    }
+
+    private fun getAllEntries() {
+        viewModelScope.launch {
+//            entry.value =
+        }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

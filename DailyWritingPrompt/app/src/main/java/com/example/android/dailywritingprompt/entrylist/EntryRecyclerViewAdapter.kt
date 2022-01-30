@@ -29,6 +29,7 @@ class EntryRecyclerViewAdapter(private val clickListener: EntryListener) :
         fun bind(entry: Entry) {
             binding.entryObject = entry
             binding.executePendingBindings()
+
         }
     }
 
@@ -51,6 +52,7 @@ class EntryRecyclerViewAdapter(private val clickListener: EntryListener) :
             }
             it.bind(entry)
         }
+
     }
 
 }

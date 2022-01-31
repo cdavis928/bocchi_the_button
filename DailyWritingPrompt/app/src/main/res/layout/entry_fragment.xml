@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="entryViewModel"
             type="com.example.android.dailywritingprompt.EntryViewModel" />
         <variable
             name="entryObject"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
-        android:text="3:00"
+        android:text="@{entryViewModel.currentTimeString}"
         app:layout_constraintEnd_toStartOf="@+id/entry_word_count_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entry_prompt_tv" />
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="124dp"
-        android:text="123 words"
+        android:text="word count here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entry_prompt_tv" />
 
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="Button For ViewModel test"
+        android:text="NAVIGATE TO ENTRYDETAILFRAGMENT (remove after testing)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

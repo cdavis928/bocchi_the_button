@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.android.dailywritingprompt.EntryViewModel
 import com.example.android.dailywritingprompt.R
 import com.example.android.dailywritingprompt.databinding.EntryFragmentBinding
@@ -19,7 +21,7 @@ import com.example.android.dailywritingprompt.models.Entry
 
 class EntryFragment : Fragment() {
 
-    private val viewModel by activityViewModels<EntryViewModel>()
+    private lateinit var viewModel: EntryViewModel
 
     private lateinit var binding: EntryFragmentBinding
 
@@ -37,7 +39,26 @@ class EntryFragment : Fragment() {
             false
         )
 
+        viewModel = ViewModelProvider(this)[EntryViewModel::class.java]
+
+        // Important: The app can run without this but you will not be populating any of the
+        // fields that require the use of the viewModel. So don't forget to bind the viewmodel!
+        binding.entryViewModel = viewModel
+
         binding.entryObject = entry
+
+        binding.lifecycleOwner = this
+
+
+        // Set up event listening to take player to PromptFragment when timer is done
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { isFinished ->
+            if (isFinished) {
+                val action = EntryFragmentDirections.actionEntryFragmentToEntryDetailFragment(entry)
+                findNavController().navigate(action)
+                viewModel.onWritingComplete()
+            }
+        })
+
 
         return binding.root
     }
@@ -45,13 +66,12 @@ class EntryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //TODO: Remove after testing
         binding.testingButton.setOnClickListener{
             viewModel.addEntry(entry)
-
             view.findNavController()
                 .navigate(EntryFragmentDirections.actionEntryFragmentToEntryDetailFragment(entry))
         }
     }
-
 
 }

@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.text.format.DateUtils
 import android.util.Log
 import android.widget.EditText
+import androidx.databinding.Bindable
 import androidx.lifecycle.*
 import com.example.android.dailywritingprompt.models.Entry
 import kotlinx.coroutines.launch
@@ -34,6 +35,23 @@ class EntryViewModel(
         //TODO: We will change this based on whats chosen in PromptFragment
         // This is the total time of the game
         private const val COUNTDOWN_TIME = 60000L
+
+    }
+
+    val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            characterCountString.length
+
+            // In this space is where we r supposed to change the field to reflect
+            // the neww number
+
+        }
 
     }
 
@@ -92,6 +110,7 @@ class EntryViewModel(
         }.start()
 
     }
+
 
 
     fun onEntryClicked(entry: Entry) {

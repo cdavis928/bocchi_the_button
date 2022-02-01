@@ -44,6 +44,7 @@
         android:layout_marginBottom="136dp"
         android:background="@color/teal_200"
         android:hint="Start typing away!"
+        textChangedListener="@{entryViewModel.textWatcher}"
         android:text="@={entryObject.entryContent}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -21,11 +21,13 @@ import com.example.android.dailywritingprompt.databinding.EntryFragmentBinding
 import com.example.android.dailywritingprompt.models.Entry
 import kotlinx.android.synthetic.main.entry_fragment.*
 import kotlinx.android.synthetic.main.fragment_entry_item.*
+import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 
 //TODO: Display some kind of warning message if the user clicks back, and if possible, the menu/home buttons
 // Maybe there's a way to hide it like when a game is being played
 
-class EntryFragment : androidx.fragment.app.Fragment() {
+class EntryFragment : Fragment() {
 
     private lateinit var viewModel: EntryViewModel
 
@@ -60,7 +62,7 @@ class EntryFragment : androidx.fragment.app.Fragment() {
 
         // Set up event listening to take player to PromptFragment when timer is done
         viewModel.eventGameFinish.observe(viewLifecycleOwner,
-            androidx.lifecycle.Observer { isFinished ->
+            Observer { isFinished ->
                 if (isFinished) {
                     val action =
                         EntryFragmentDirections.actionEntryFragmentToEntryDetailFragment(entry)

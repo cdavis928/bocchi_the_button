@@ -2,8 +2,12 @@ package com.example.android.dailywritingprompt
 
 import android.app.Application
 import android.os.CountDownTimer
+import android.provider.Settings.Global.getString
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.format.DateUtils
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.*
 import com.example.android.dailywritingprompt.models.Entry
 import kotlinx.coroutines.launch
@@ -39,15 +43,30 @@ class EntryViewModel(
     val currentTime: LiveData<Long>
         get() = _currentTime
 
+    // Convert the time into a string
+    val currentTimeString = Transformations.map(currentTime) { time ->
+        DateUtils.formatElapsedTime(time)
+    }
+
     // Event which triggers the end of the game
     private val _eventGameFinish = MutableLiveData<Boolean>()
     val eventGameFinish: LiveData<Boolean>
         get() = _eventGameFinish
 
-    // Convert the time into a string
-    val currentTimeString = Transformations.map(currentTime) { time ->
-        DateUtils.formatElapsedTime(time)
-    }
+
+    /**
+     * Properties for the textwatcher are here
+     */
+    //TODO: Let's count characters first. then when we do that successfully let's try
+    // to convert it to word count using this:
+    // https://stackoverflow.com/questions/55426910/how-to-count-the-number-of-words-in-kotlin-android
+
+    private val _characterCount = MutableLiveData<Int>()
+    val characterCount: LiveData<Int>
+        get() = _characterCount
+
+    val characterCountString = characterCount.toString()
+
 
     private val _entries = MutableLiveData<ArrayList<Entry>>()
     val entries: LiveData<ArrayList<Entry>>
@@ -71,7 +90,9 @@ class EntryViewModel(
                 _eventGameFinish.value = true
             }
         }.start()
+
     }
+
 
     fun onEntryClicked(entry: Entry) {
         _navigateToEntryDetail.value = entry
